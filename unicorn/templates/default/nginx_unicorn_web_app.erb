@@ -23,7 +23,9 @@ server {
     client_max_body_size <%= @application[:nginx][:client_max_body_size] %>;
   <% end %>
 
-  try_files $uri/index.html $uri $uri/ @unicorn;
+  location / {
+    try_files $uri $uri/ @unicorn;
+  }  
 
   location @unicorn {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
