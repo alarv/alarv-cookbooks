@@ -1,3 +1,4 @@
+
 upstream unicorn_<%= @application[:domains].first %> {
  server unix:<%= @application[:deploy_to]%>/shared/sockets/unicorn.sock fail_timeout=0;
 }
@@ -22,9 +23,7 @@ server {
     client_max_body_size <%= @application[:nginx][:client_max_body_size] %>;
   <% end %>
 
-  location / {
-    try_files $uri $uri/ $uri/index.html $uri/index.htm @unicorn;
-  }
+  try_files $uri/index.html $uri $uri/ @unicorn;
 
   location @unicorn {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
