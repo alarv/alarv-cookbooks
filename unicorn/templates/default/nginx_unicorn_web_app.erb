@@ -23,7 +23,7 @@ server {
   <% end %>
 
   location / {
-    try_files $uri $uri/ @unicorn;
+    try_files $uri $uri/ $uri/index.html $uri/index.htm @unicorn;
   }
 
   location @unicorn {
