@@ -25,7 +25,7 @@ server {
 
   location / {
     root <%= @application[:absolute_document_root] %>;
-    try_files $uri/ $uri @unicorn;
+    try_files $uri $uri/ @unicorn;
   }  
 
   location @unicorn {
