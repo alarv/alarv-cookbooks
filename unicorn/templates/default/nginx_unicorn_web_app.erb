@@ -24,7 +24,7 @@ server {
   <% end %>
  
   location / {
-    rewrite ^ @unicorn last;
+    try_files $uri @unicorn;
   }
 
   location @unicorn {
